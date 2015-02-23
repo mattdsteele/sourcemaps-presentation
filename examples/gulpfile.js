@@ -9,9 +9,11 @@ gulp.task('default', function() {
     './node_modules/angular/angular.js',
     './node_modules/lodash/index.js'
   ];
-  return gulp.src(deps)
+  var more = deps.concat(['./src/js/*.js']);
+  console.log(more);
+  return gulp.src(more)
     .pipe(sourceMaps.init({ loadMaps: true }))
-    .pipe(concat('deps.js'))
+    .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
     .pipe(gulp.dest('dist'))
