@@ -12,7 +12,7 @@
 - 2-way mapping between source/destination
 - History
 - Spec
-- CSS and Sass
+- CSS and Sass too
 
 ## Demos
 
@@ -23,7 +23,8 @@
 
 ## Use it
 
-- Grunt/Gulp
-- Write your own
+- All evergreen browsers
+- Grunt
+- Gulp
 
 [transpile]: https://twitter.com/fogus/status/550717447163355136
