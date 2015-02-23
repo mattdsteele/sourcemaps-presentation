@@ -1,5 +1,5 @@
 class Test {
   constructor(name) {
-    console.log(`Thanks for being here, ${name}!`);
+    console.log(`Thank me for being here, ${name}!`);
   }
 }

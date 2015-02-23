@@ -3,10 +3,17 @@ var gulp = require('gulp'),
   babel = require('gulp-babel'),
   uglify = require('gulp-uglify'),
   es = require('event-stream'),
+  connect = require('gulp-connect'),
   sourceMaps = require('gulp-sourcemaps');
 
+gulp.task('connect', function() {
+  connect.server({
+    livereload: true,
+    port: 4000
+  });
+});
 
-gulp.task('default', function() {
+gulp.task('js', function() {
   var deps = [
     './node_modules/angular/angular.js',
     './node_modules/lodash/index.js'
@@ -25,4 +32,11 @@ gulp.task('default', function() {
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
     .pipe(gulp.dest('dist'))
+    .pipe(connect.reload());
 });
+
+gulp.task('watch', function() {
+  gulp.watch(['./src/**/*'], ['js']);
+});
+
+gulp.task('default', ['js', 'connect', 'watch']);
