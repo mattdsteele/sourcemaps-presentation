@@ -14,19 +14,28 @@ gulp.task('connect', function() {
 });
 
 gulp.task('js', function() {
-  var deps = [
-    './node_modules/angular/angular.js',
-    './node_modules/lodash/index.js'
-  ];
+
   //ES6
   var es6Stream = gulp.src(['src/es6/*.es6'])
     .pipe(sourceMaps.init({ loadMaps: true}))
     .pipe(babel());
 
+  //JS
+  var deps = [
+    './node_modules/angular/angular.js',
+    './node_modules/lodash/index.js'
+  ];
   var jsFiles = deps.concat(['./src/*.js']);
   var jsStream = gulp.src(jsFiles)
     .pipe(sourceMaps.init({ loadMaps: true }));
 
+  //TypeScript
+
+  //CoffeeScript
+
+  //ArnoldC
+
+  //Now smoosh them together
   return es.merge(es6Stream, jsStream)
     .pipe(concat('app.js'))
     .pipe(uglify())
@@ -35,8 +44,17 @@ gulp.task('js', function() {
     .pipe(connect.reload());
 });
 
+gulp.task('css', function() {
+  //Sass
+
+  //CSS
+
+  //Then smoosh them together
+});
+
 gulp.task('watch', function() {
   gulp.watch(['./src/**/*'], ['js']);
+  gulp.watch(['src/sass/*', 'src/css/*'], ['css']);
 });
 
 gulp.task('default', ['js', 'connect', 'watch']);

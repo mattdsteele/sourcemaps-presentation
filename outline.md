@@ -12,12 +12,12 @@
 - 2-way mapping between source/destination
 - History
 - Spec
-- CSS and Sass too
+- CSS too
 
 ## Demos
 
 ### Minification
-### Sass
+### Sass + Autoprefixer
 ### Transpiled code
 ### ArnoldC demo
 
@@ -28,3 +28,4 @@
 - Gulp
 
 [transpile]: https://twitter.com/fogus/status/550717447163355136
+[viz tool]: http://sokra.github.io/source-map-visualization/
