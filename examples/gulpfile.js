@@ -6,6 +6,7 @@ var gulp = require('gulp'),
   ngAnnotate = require('gulp-ng-annotate')
   es = require('event-stream'),
   csswring = require('csswring'),
+  autoprefixer = require('gulp-autoprefixer'),
   connect = require('gulp-connect'),
   sourceMaps = require('gulp-sourcemaps');
 
@@ -59,6 +60,7 @@ gulp.task('css', function() {
   ])
   .pipe(sourceMaps.init({ loadMaps: true }))
   .pipe(concat('app.css'))
+  .pipe(autoprefixer())
   .pipe(postCss([ csswring ]))
   .pipe(sourceMaps.write('.'))
   .pipe(gulp.dest('dist'))
