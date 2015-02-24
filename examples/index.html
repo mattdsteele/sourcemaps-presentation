@@ -3,7 +3,14 @@
   <head>
     <script src="dist/app.js"></script>
   </head>
-  <body>
+  <body ng-app="nejs">
+    <div ng-controller="Example1Controller as example1">
+      <h1>NebraskaJS Presenters</h1>
+      <button ng-click="example1.showPresenters()">Show Presenters</button>
+      <div ng-repeat="presenter in example1.presenters">
+        <nejs-presenter presenter="{{presenter}}">
+      </div>
+    </div>
   </body>
 
 </html>

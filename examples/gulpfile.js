@@ -2,6 +2,7 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   babel = require('gulp-babel'),
   uglify = require('gulp-uglify'),
+  ngAnnotate = require('gulp-ng-annotate')
   es = require('event-stream'),
   connect = require('gulp-connect'),
   sourceMaps = require('gulp-sourcemaps');
@@ -25,7 +26,7 @@ gulp.task('js', function() {
     './node_modules/angular/angular.js',
     './node_modules/lodash/index.js'
   ];
-  var jsFiles = deps.concat(['./src/*.js']);
+  var jsFiles = deps.concat(['./src/js/*.js']);
   var jsStream = gulp.src(jsFiles)
     .pipe(sourceMaps.init({ loadMaps: true }));
 
@@ -37,6 +38,7 @@ gulp.task('js', function() {
 
   //Now smoosh them together
   return es.merge(es6Stream, jsStream)
+    .pipe(ngAnnotate())
     .pipe(concat('app.js'))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
