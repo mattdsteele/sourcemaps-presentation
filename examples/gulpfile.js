@@ -2,8 +2,10 @@ var gulp = require('gulp'),
   concat = require('gulp-concat'),
   babel = require('gulp-babel'),
   uglify = require('gulp-uglify'),
+  postCss = require('gulp-postcss'),
   ngAnnotate = require('gulp-ng-annotate')
   es = require('event-stream'),
+  csswring = require('csswring'),
   connect = require('gulp-connect'),
   sourceMaps = require('gulp-sourcemaps');
 
@@ -50,8 +52,17 @@ gulp.task('css', function() {
   //Sass
 
   //CSS
-
   //Then smoosh them together
+  return gulp.src([
+    'node_modules/normalize.css/normalize.css',
+    'src/css/*'
+  ])
+  .pipe(sourceMaps.init({ loadMaps: true }))
+  .pipe(concat('app.css'))
+  .pipe(postCss([ csswring ]))
+  .pipe(sourceMaps.write('.'))
+  .pipe(gulp.dest('dist'))
+  .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {
@@ -59,4 +70,4 @@ gulp.task('watch', function() {
   gulp.watch(['src/sass/*', 'src/css/*'], ['css']);
 });
 
-gulp.task('default', ['js', 'connect', 'watch']);
+gulp.task('default', ['js', 'css', 'connect', 'watch']);
