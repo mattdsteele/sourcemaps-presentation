@@ -4,7 +4,7 @@ angular.module('nejs')
     scope: {
       presenter: '@'
     },
-    template: '<div class="presenter"><img ng-src="{{avatarUrl}}"></div>',
+    template: '<div><img ng-src="{{avatarUrl}}"></div>',
     controller: function($scope, Presenters) {
       $scope.avatarUrl = Presenters.imageFor($scope.presenter);
     }

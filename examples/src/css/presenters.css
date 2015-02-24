@@ -1,6 +1,11 @@
 .presenters {
   margin: 0 auto;
-  max-width: 200px;
+  max-width: 1000px;
+}
+
+.presenter {
+  display: inline-block;
+  width: 200px;
 }
 
 .show {
