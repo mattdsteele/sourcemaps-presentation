@@ -18,6 +18,25 @@ gulp.task('connect', function() {
   });
 });
 
+function js(streams, fileName) {
+  return streams
+    .pipe(ngAnnotate())
+    .pipe(concat(fileName))
+    .pipe(uglify())
+    .pipe(sourceMaps.write('.'))
+    .pipe(gulp.dest('dist'))
+    .pipe(connect.reload());
+}
+
+function css(streams, fileName) {
+  return streams
+    .pipe(concat(fileName))
+    .pipe(autoprefixer())
+    .pipe(postCss([ csswring ]))
+    .pipe(sourceMaps.write('.'))
+    .pipe(gulp.dest('dist'))
+    .pipe(connect.reload());
+}
 gulp.task('js', function() {
 
   //ES6
@@ -41,13 +60,7 @@ gulp.task('js', function() {
   //ArnoldC
 
   //Now smoosh them together
-  return es.merge(es6Stream, jsStream)
-    .pipe(ngAnnotate())
-    .pipe(concat('app.js'))
-    .pipe(uglify())
-    .pipe(sourceMaps.write('.'))
-    .pipe(gulp.dest('dist'))
-    .pipe(connect.reload());
+  return js(es.merge(es6Stream, jsStream), 'example1.js');
 });
 
 gulp.task('css', function() {
@@ -63,13 +76,7 @@ gulp.task('css', function() {
   ]).pipe(sourceMaps.init({ loadMaps: true }));
 
   //Then smoosh them together
-  return es.merge(sassFiles, cssFiles)
-    .pipe(concat('app.css'))
-    .pipe(autoprefixer())
-    .pipe(postCss([ csswring ]))
-    .pipe(sourceMaps.write('.'))
-    .pipe(gulp.dest('dist'))
-    .pipe(connect.reload());
+  return css(es.merge(sassFiles, cssFiles), 'example1.css');
 });
 
 gulp.task('watch', function() {
