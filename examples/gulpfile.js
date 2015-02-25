@@ -8,6 +8,7 @@ var gulp = require('gulp'),
   csswring = require('csswring'),
   autoprefixer = require('gulp-autoprefixer'),
   connect = require('gulp-connect'),
+  sass = require('gulp-sass'),
   sourceMaps = require('gulp-sourcemaps');
 
 gulp.task('connect', function() {
@@ -51,20 +52,24 @@ gulp.task('js', function() {
 
 gulp.task('css', function() {
   //Sass
+  var sassFiles = gulp.src(['src/sass/*'])
+    .pipe(sourceMaps.init({ loadMaps: true}))
+    .pipe(sass());
 
   //CSS
-  //Then smoosh them together
-  return gulp.src([
+  var cssFiles =  gulp.src([
     'node_modules/normalize.css/normalize.css',
     'src/css/*'
-  ])
-  .pipe(sourceMaps.init({ loadMaps: true }))
-  .pipe(concat('app.css'))
-  .pipe(autoprefixer())
-  .pipe(postCss([ csswring ]))
-  .pipe(sourceMaps.write('.'))
-  .pipe(gulp.dest('dist'))
-  .pipe(connect.reload());
+  ]).pipe(sourceMaps.init({ loadMaps: true }));
+
+  //Then smoosh them together
+  return es.merge(sassFiles, cssFiles)
+    .pipe(concat('app.css'))
+    .pipe(autoprefixer())
+    .pipe(postCss([ csswring ]))
+    .pipe(sourceMaps.write('.'))
+    .pipe(gulp.dest('dist'))
+    .pipe(connect.reload());
 });
 
 gulp.task('watch', function() {

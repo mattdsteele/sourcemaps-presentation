@@ -1,0 +1,22 @@
+@mixin center {
+  margin: 0 auto;
+}
+
+$page-width: 1000px;
+
+.presenters {
+  @include center;
+  max-width: $page-width;
+
+  .presenter {
+    display: inline-block;
+    width: 200px;
+  }
+}
+
+
+.show {
+  margin: 0 auto;
+  display: block;
+}
+
