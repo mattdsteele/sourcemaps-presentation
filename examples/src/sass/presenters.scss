@@ -1,8 +1,18 @@
+$page-width: 1000px;
+
 @mixin center {
   margin: 0 auto;
 }
 
-$page-width: 1000px;
+@mixin circular-hover-effect {
+  border-radius: 50%;
+  transition: border-radius 0.3s;
+
+  &:hover {
+    border-radius: 10%;
+  }
+}
+
 
 .presenters {
   @include center;
@@ -14,9 +24,14 @@ $page-width: 1000px;
   }
 }
 
+nejs-presenter {
+  img {
+    @include circular-hover-effect;
+  }
+}
 
 .show {
-  margin: 0 auto;
+  @include center;
   display: block;
 }
 
