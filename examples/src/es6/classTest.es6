@@ -8,3 +8,4 @@ class ES6Controller {
 angular.module('nejs', [])
 .controller('ES6Controller', ES6Controller);
 
+console.log('i am outside here');

@@ -9,6 +9,7 @@ var gulp = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
   connect = require('gulp-connect'),
   sass = require('gulp-sass'),
+  coffee = require('gulp-coffee'),
   sourceMaps = require('gulp-sourcemaps'),
   streamqueue = require('streamqueue');
 
@@ -69,10 +70,12 @@ gulp.task('js2', function() {
   //TypeScript
 
   //CoffeeScript
+  var coffeeStream = gulp.src(['src/coffee/*.coffee'])
+    .pipe(sourceMaps.init({ loadMaps: true}))
+    .pipe(coffee({ bare: true }));
 
   //ArnoldC
-  return js(streamqueue({ objectMode: true }, jsStream, es6Stream), 'example2.js');
-  //return js(es.merge(es6Stream, jsStream), 'example2.js');
+  return js(streamqueue({ objectMode: true }, jsStream, es6Stream, coffeeStream), 'example2.js');
 });
 
 gulp.task('css', function() {
