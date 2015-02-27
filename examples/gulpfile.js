@@ -10,6 +10,7 @@ var gulp = require('gulp'),
   connect = require('gulp-connect'),
   sass = require('gulp-sass'),
   coffee = require('gulp-coffee'),
+  ts = require('gulp-typescript'),
   sourceMaps = require('gulp-sourcemaps'),
   streamqueue = require('streamqueue');
 
@@ -68,6 +69,11 @@ gulp.task('js2', function() {
     .pipe(babel());
 
   //TypeScript
+  var tsStream = gulp.src(['src/ts/*.ts'])
+    .pipe(sourceMaps.init({ loadMaps: true}))
+    .pipe(ts({
+      sourceRoot: ''
+    }));
 
   //CoffeeScript
   var coffeeStream = gulp.src(['src/coffee/*.coffee'])
@@ -75,7 +81,7 @@ gulp.task('js2', function() {
     .pipe(coffee({ bare: true }));
 
   //ArnoldC
-  return js(streamqueue({ objectMode: true }, jsStream, es6Stream, coffeeStream), 'example2.js');
+  return js(streamqueue({ objectMode: true }, jsStream, es6Stream, coffeeStream, tsStream), 'example2.js');
 });
 
 gulp.task('css', function() {
