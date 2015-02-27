@@ -5,11 +5,18 @@
     <link rel="stylesheet" href="dist/example2.css" />
   </head>
   <body ng-app="nejs">
-    <div ng-controller="Example2Controller as example2">
+    <div>
       <h1>Framework War</h1>
-      <img src="img/nebraskajs.svg">
-      <img src="img/nebraskacs.jpg">
-      <img src="img/nebraskats.jpg">
+      <div ng-controller="ES6Controller as es6">
+        <img src="img/nebraskajs.svg">
+        <span>{{es6.data}}</span>
+      </div>
+      <div ng-controller="CoffeeScriptController as cs">
+        <img src="img/nebraskacs.jpg">
+      </div>
+      <div ng-controller="TypeScriptController as ts">
+        <img src="img/nebraskats.jpg">
+      </div>
     </div>
   </body>
 
