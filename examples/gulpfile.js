@@ -72,6 +72,7 @@ gulp.task('js2', function() {
   var tsStream = gulp.src(['src/ts/*.ts'])
     .pipe(sourceMaps.init({ loadMaps: true}))
     .pipe(ts({
+      sortOutput: true,
       sourceRoot: ''
     }));
 

@@ -1,13 +1,16 @@
 /// <reference path="angular.d.ts" />
 
-class TypeScriptController {
-  language: string;
-  data: string;
-  constructor() {
-    this.language = 'TypeScript';
-    this.data = 'Hello from ' + this.language;
-  }
-}
+module TS {
+  class TypeScriptController {
+    company: string;
+    importantMessage: string;
+    constructor() {
+      this.company = 'Microsoft';
 
-angular.module('nejs')
-.controller('TypeScriptController', TypeScriptController);
+      this.importantMessage = `Please don't hate me just because I'm from ${this.company}`;
+    }
+  }
+
+  angular.module('nejs')
+  .controller('TypeScriptController', TypeScriptController);
+}

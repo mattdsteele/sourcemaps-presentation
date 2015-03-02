@@ -2,22 +2,28 @@
 <html>
   <head>
     <script src="dist/example2.js"></script>
-    <link rel="stylesheet" href="dist/example2.css" />
+    <link rel="stylesheet" href="dist/example1.css" />
   </head>
   <body ng-app="nejs">
     <div>
-      <h1>Framework War</h1>
+      <h1>Language Wars: TypeScript Strikes Back</h1>
       <div ng-controller="ES6Controller as es6">
         <img src="img/nebraskajs.svg">
-        <span>{{es6.data}}</span>
+        <div ng-repeat="fibNumber in es6.fibonacciItems">
+          <span ng-bind="fibNumber">
+        </div>
       </div>
       <div ng-controller="CoffeeScriptController as cs">
-          <span>{{cs.data}}</span>
         <img src="img/nebraskacs.jpg">
+        <div ng-repeat="square in cs.squares()">
+          <span ng-bind="square">
+        </div>
       </div>
       <div ng-controller="TypeScriptController as ts">
         <img src="img/nebraskats.jpg">
-          <span>{{ts.data}}</span>
+        <div>
+          <span ng-bind="ts.importantMessage">
+        </div>
       </div>
     </div>
   </body>
