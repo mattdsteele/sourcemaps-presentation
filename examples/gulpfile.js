@@ -48,9 +48,13 @@ var deps = [
   './node_modules/lodash/index.js'
 ];
 
-gulp.task('js', function() {
+gulp.task('deps', function() {
+  return gulp.src(deps)
+    .pipe(gulp.dest('dist'));
+});
+gulp.task('js', ['deps'], function() {
   //JS
-  var jsFiles = deps.concat(['./src/js/*.js']);
+  var jsFiles = ['./src/js/*.js'];
   var jsStream = gulp.src(jsFiles)
     .pipe(sourceMaps.init({ loadMaps: true }));
 
@@ -58,9 +62,9 @@ gulp.task('js', function() {
   return js(es.merge(jsStream), 'example1.js');
 });
 
-gulp.task('js2', ['arnoldc'], function() {
+gulp.task('js2', ['arnoldc', 'deps'], function() {
   //JS
-  var jsFiles = deps.concat(['/src/js/*.js']);
+  var jsFiles = ['/src/js/*.js'];
   var jsStream = gulp.src(jsFiles)
     .pipe(sourceMaps.init({ loadMaps: true }));
     //
