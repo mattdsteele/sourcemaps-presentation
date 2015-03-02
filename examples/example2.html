@@ -25,6 +25,12 @@
           <span ng-bind="ts.importantMessage">
         </div>
       </div>
+      <div ng-controller="ArnoldController as arnold">
+        <img src="img/arnold.gif">
+        <div ng-repeat="i in arnold.accumulator track by $index">
+          <span ng-bind="i">
+        </div>
+      </div>
     </div>
   </body>
 
