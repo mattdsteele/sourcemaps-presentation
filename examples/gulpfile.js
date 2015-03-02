@@ -12,6 +12,7 @@ var gulp = require('gulp'),
   coffee = require('gulp-coffee'),
   ts = require('gulp-typescript'),
   sourceMaps = require('gulp-sourcemaps'),
+  shell = require('gulp-shell'),
   streamqueue = require('streamqueue');
 
 gulp.task('connect', function() {
@@ -57,7 +58,7 @@ gulp.task('js', function() {
   return js(es.merge(jsStream), 'example1.js');
 });
 
-gulp.task('js2', function() {
+gulp.task('js2', ['arnoldc'], function() {
   //JS
   var jsFiles = deps.concat(['/src/js/*.js']);
   var jsStream = gulp.src(jsFiles)
@@ -82,7 +83,11 @@ gulp.task('js2', function() {
     .pipe(coffee({ bare: true }));
 
   //ArnoldC
-  return js(streamqueue({ objectMode: true }, jsStream, es6Stream, coffeeStream, tsStream), 'example2.js');
+  var arnoldStream = gulp.src(['src/arnoldc/*.js'])
+    .pipe(sourceMaps.init({ loadMaps: true}));
+
+  //Smoosh
+  return js(streamqueue({ objectMode: true }, jsStream, es6Stream, coffeeStream, tsStream, arnoldStream), 'example2.js');
 });
 
 gulp.task('css', function() {
@@ -107,3 +112,7 @@ gulp.task('watch', function() {
 });
 
 gulp.task('default', ['js', 'js2', 'css', 'connect', 'watch']);
+gulp.task('arnoldc', function() {
+  return gulp.src('src/arnoldc/*.arnoldc', { read: false })
+    .pipe(shell('arnoldc.js <%= file.path %>'));
+});

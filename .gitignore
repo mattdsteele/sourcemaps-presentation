@@ -1,2 +1,3 @@
 examples/dist
+examples/src/arnoldc/*.js*
 node_modules
