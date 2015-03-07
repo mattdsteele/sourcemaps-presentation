@@ -44,7 +44,8 @@ function css(streams, fileName) {
 
 //JS
 var deps = [
-  './node_modules/angular/angular.js',
+  './node_modules/angular/angular.min.**',
+  './node_modules/angular-new-router/dist/router*',
   './node_modules/lodash/index.js'
 ];
 
@@ -107,7 +108,7 @@ gulp.task('css', function() {
   ]).pipe(sourceMaps.init({ loadMaps: true }));
 
   //Then smoosh them together
-  return css(es.merge(sassFiles, cssFiles), 'example1.css');
+  return css(es.merge(sassFiles, cssFiles), 'examples.css');
 });
 
 gulp.task('watch', function() {

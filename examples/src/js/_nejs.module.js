@@ -1,1 +1,1 @@
-angular.module('nejs', []);
+angular.module('nejs', ['ngNewRouter']);
