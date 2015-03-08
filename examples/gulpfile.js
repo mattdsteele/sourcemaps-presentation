@@ -64,11 +64,6 @@ gulp.task('js', ['deps'], function() {
 });
 
 gulp.task('js2', ['arnoldc', 'deps'], function() {
-  //JS
-  var jsFiles = ['/src/js/*.js'];
-  var jsStream = gulp.src(jsFiles)
-    .pipe(sourceMaps.init({ loadMaps: true }));
-    //
   //ES6
   var es6Stream = gulp.src(['src/es6/*.es6'])
     .pipe(sourceMaps.init({ loadMaps: true}))
@@ -92,7 +87,7 @@ gulp.task('js2', ['arnoldc', 'deps'], function() {
     .pipe(sourceMaps.init({ loadMaps: true}));
 
   //Smoosh
-  return js(streamqueue({ objectMode: true }, jsStream, es6Stream, coffeeStream, tsStream, arnoldStream), 'example2.js');
+  return js(streamqueue({ objectMode: true }, es6Stream, coffeeStream, tsStream, arnoldStream), 'example2.js');
 });
 
 gulp.task('css', function() {

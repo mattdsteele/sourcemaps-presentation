@@ -5,34 +5,14 @@
     <script src="dist/router.es5.js"></script>
     <script src="dist/example2.js"></script>
     <link rel="stylesheet" href="dist/examples.css" />
+    <base href="/">
   </head>
   <body ng-app="nejs">
-    <div>
+    <div ng-controller="Example2Controller">
       <h1>Language Wars: TypeScript Strikes Back</h1>
       <div class="container">
-        <div class="column" ng-controller="ES6Controller as es6">
-          <img src="img/nebraskajs.svg">
-          <div ng-repeat="fibNumber in es6.fibonacciItems">
-            <span ng-bind="fibNumber">
-          </div>
-        </div>
-        <div class="column" ng-controller="CoffeeScriptController as cs">
-          <img src="img/nebraskacs.jpg">
-          <div ng-repeat="square in cs.squares()">
-            <span ng-bind="square">
-          </div>
-        </div>
-        <div class="column" ng-controller="TypeScriptController as ts">
-          <img src="img/nebraskats.jpg">
-          <div>
-            <span ng-bind="ts.importantMessage">
-          </div>
-        </div>
-        <div class="column" ng-controller="ArnoldController as arnold">
-          <img src="img/arnold.gif">
-          <div ng-repeat="i in arnold.accumulator track by $index">
-            <span ng-bind="i">
-          </div>
+        <div class="column">
+          <ng-viewport></ng-viewport>
         </div>
       </div>
     </div>

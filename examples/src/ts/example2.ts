@@ -12,5 +12,5 @@ module TS {
   }
 
   angular.module('nejs')
-  .controller('TypeScriptController', TypeScriptController);
+  .controller('TypescriptController', TypeScriptController);
 }

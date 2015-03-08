@@ -5,7 +5,7 @@ LISTEN TO ME VERY CAREFULLY print
   DO IT NOW accumulator.push printing
 HASTA LA VISTA, BABY
 
-LISTEN TO ME VERY CAREFULLY ArnoldController
+LISTEN TO ME VERY CAREFULLY ArnoldcController
   DO IT NOW eval "this.accumulator = []"
   HEY CHRISTMAS TREE isLessThan100
   YOU SET US UP @NO PROBLEMO
@@ -51,7 +51,7 @@ IT'S SHOWTIME
   GET YOUR ASS TO MARS arnoldModule
     DO IT NOW angular.module "nejs"
 
-  DO IT NOW arnoldModule.controller "ArnoldController" ArnoldController
+  DO IT NOW arnoldModule.controller "ArnoldcController" ArnoldcController
 YOU HAVE BEEN TERMINATED
 
 LISTEN TO ME VERY CAREFULLY modulo

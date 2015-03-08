@@ -11,5 +11,5 @@ class CoffeeScriptController
     @math.square num for num in @list
 
 angular.module 'nejs'
-.controller 'CoffeeScriptController', CoffeeScriptController
+.controller 'CoffeescriptController', CoffeeScriptController
 

@@ -1,4 +1,4 @@
-class ES6Controller {
+class Es6Controller {
   constructor() {
     this.fibonacciItems = [];
     this.fib();
@@ -26,5 +26,5 @@ class ES6Controller {
   }
 }
 
-angular.module('nejs', [])
-.controller('ES6Controller', ES6Controller);
+angular.module('nejs')
+.controller('Es6Controller', Es6Controller);
