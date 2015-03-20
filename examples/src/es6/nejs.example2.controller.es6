@@ -3,7 +3,7 @@ class Example2Controller {
     $router.config([
       {
         path: '/',
-        redirectTo: '/coffeescript'
+        redirectTo: '/es6'
       },
       {
         path: '/coffeescript',
