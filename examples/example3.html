@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="dist/angular.min.js"></script>
+    <script src="dist/router.es5.js"></script>
+    <script src="dist/example3.js"></script>
+    <link rel="stylesheet" href="dist/examples.css" />
+    <base href="/">
+  </head>
+  <body ng-app="nejs">
+    <div ng-controller="Example2Controller">
+      <div class="nav">
+        <ul>
+          <li><a ng-link="es6()">ECMAScript 6</a></li>
+          <li><a ng-link="coffeescript()">CoffeeScript</a></li>
+          <li><a ng-link="typescript()">TypeScript</a></li>
+          <li><a ng-link="arnoldc()">ArnoldC</a></li>
+        </ul>
+      </div>
+      <h1>Language Wars: TypeScript Strikes Back</h1>
+      <div class="container">
+        <div class="column">
+          <ng-viewport></ng-viewport>
+        </div>
+      </div>
+    </div>
+  </body>
+
+</html>

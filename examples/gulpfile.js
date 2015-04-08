@@ -44,7 +44,7 @@ function css(streams, fileName) {
 
 //JS
 var deps = [
-  './node_modules/angular/angular.min.**',
+  './node_modules/angular/angular.min.js*',
   './node_modules/angular-new-router/dist/router*',
   './node_modules/lodash/index.js'
 ];
@@ -82,12 +82,35 @@ gulp.task('js2', ['arnoldc', 'deps'], function() {
     .pipe(sourceMaps.init({ loadMaps: true}))
     .pipe(coffee({ bare: true }));
 
+  //Smoosh
+  return js(streamqueue({ objectMode: true }, es6Stream, coffeeStream, tsStream), 'example2.js');
+});
+
+gulp.task('js3', ['arnoldc', 'deps'], function() {
+  //ES6
+  var es6Stream = gulp.src(['src/es6/*.es6'])
+    .pipe(sourceMaps.init({ loadMaps: true}))
+    .pipe(babel());
+
+  //TypeScript
+  var tsStream = gulp.src(['src/ts/*.ts'])
+    .pipe(sourceMaps.init({ loadMaps: true}))
+    .pipe(ts({
+      sortOutput: true,
+      sourceRoot: ''
+    }));
+
+  //CoffeeScript
+  var coffeeStream = gulp.src(['src/coffee/*.coffee'])
+    .pipe(sourceMaps.init({ loadMaps: true}))
+    .pipe(coffee({ bare: true }));
+
   //ArnoldC
   var arnoldStream = gulp.src(['src/arnoldc/*.js'])
     .pipe(sourceMaps.init({ loadMaps: true}));
 
   //Smoosh
-  return js(streamqueue({ objectMode: true }, es6Stream, coffeeStream, tsStream, arnoldStream), 'example2.js');
+  return js(streamqueue({ objectMode: true }, es6Stream, coffeeStream, tsStream, arnoldStream), 'example3.js');
 });
 
 gulp.task('css', function() {
@@ -111,7 +134,7 @@ gulp.task('watch', function() {
   gulp.watch(['src/sass/*', 'src/css/*'], ['css']);
 });
 
-gulp.task('default', ['js', 'js2', 'css', 'connect', 'watch']);
+gulp.task('default', ['js', 'js2', 'js3', 'css', 'connect', 'watch']);
 gulp.task('arnoldc', function() {
   return gulp.src('src/arnoldc/*.arnoldc', { read: false })
     .pipe(shell('arnoldc.js <%= file.path %>'));
