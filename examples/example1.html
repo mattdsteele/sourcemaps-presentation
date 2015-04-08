@@ -11,7 +11,7 @@
       <h1>NebraskaJS Presenters</h1>
       <button class="show" ng-click="example1.showPresenters()">Show Presenters</button>
       <div class="presenters">
-        <div ng-repeat="presenter in example1.presenters" class="presenter">
+        <div ng-repeat="presenter in example1.presenters | orderBy:'toString()':true" class="presenter">
           <nejs-presenter presenter="{{presenter}}">
         </div>
       </div>
