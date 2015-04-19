@@ -2,3 +2,4 @@ examples/dist
 examples/src/arnoldc/*.js*
 node_modules
 .DS_Store
+video
